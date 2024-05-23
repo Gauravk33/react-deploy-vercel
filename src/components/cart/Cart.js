@@ -43,19 +43,19 @@
 //               </div>
 //             </div>
 //           ))}
-//           <div className="row">
-//             <div className="col">
-//               <h4>Total Quantity: {totalQuantity}</h4>
-//             </div>
-//             <div className="col">
-//               <h4>Total Price: ${totalPrice.toFixed(2)}</h4>
-//             </div>
-//           </div>
-//           <div className="row mt-3">
-//             <div className="col">
-//               <button className="btn btn-success">Checkout</button>
-//             </div>
-//           </div>
+        //   <div className="row">
+        //     <div className="col">
+        //       <h4>Total Quantity: {totalQuantity}</h4>
+        //     </div>
+        //     <div className="col">
+        //       <h4>Total Price: ${totalPrice.toFixed(2)}</h4>
+        //     </div>
+        //   </div>
+        //   <div className="row mt-3">
+        //     <div className="col">
+        //       <button className="btn btn-success">Checkout</button>
+        //     </div>
+        //   </div>
 //         </>
 //       )}
 //     </div>
@@ -74,15 +74,20 @@ const Cart = ({ cart, removeFromCart, incrementQuantity, decrementQuantity }) =>
   // Calculate total price and total quantity
   const totalQuantity = cart.reduce((total, item) => total + item.quantity, 0);
   const totalPrice = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+  const isCartEmpty = cart.length === 0;
 
   return (
     <section className="h-100" style={{ backgroundColor: '#eee' }}>
       <div className="container h-100 py-5">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col-10">
-            <div className="d-flex justify-content-between align-items-center mb-4">
-              <h3 className="fw-normal mb-0 text-black">Shopping Cart</h3>
+            <div className="d-flex justify-content-center align-items-center  mb-4">
+              <h3 className="  fw-normal mb-0 text-black text-center   ">Shopping Cart</h3>
             </div>
+            {isCartEmpty ? (
+        <p style={{ fontSize: '1.2rem', color:'#999',textAlign:'center', marginTop:'20px'}}>Your cart is empty</p>
+      ) : (
+        <>
             {cart.map(item => (
               <div className="card rounded-3 mb-4" key={item.id}>
                 <div className="card-body p-4">
@@ -91,8 +96,8 @@ const Cart = ({ cart, removeFromCart, incrementQuantity, decrementQuantity }) =>
                       <img src={item.thumbnail} className="img-fluid rounded-3" alt="Cotton T-shirt" />
                     </div>
                     <div className="col-md-3 col-lg-3 col-xl-3">
-                      <p className="lead fw-normal mb-2">{item.name}</p>
-                      <p><span className="text-muted">Size: </span>M <span className="text-muted">Color: </span>Grey</p>
+                     
+                      <p><span className="text-muted">{item.title} </span> </p>
                     </div>
                     <div className="col-md-3 col-lg-3 col-xl-2 d-flex">
                     <button data-mdb-button-init data-mdb-ripple-init class="btn btn-link px-2"
@@ -112,9 +117,27 @@ const Cart = ({ cart, removeFromCart, incrementQuantity, decrementQuantity }) =>
                 </div>
               </div>
             ))}
+             <div className="row">
+            <div className="col">
+              <h4>Total Quantity: {totalQuantity}</h4>
+            </div>
+            <div className="col">
+              <h4>Total Price: ${totalPrice.toFixed(2)}</h4>
+            </div>
           </div>
+          <div className="row mt-3">
+            <div className="col">
+              <button className="btn btn-success">Checkout</button>
+            </div>
+          </div>
+              </>
+               )}
+          </div>
+        
+       
         </div>
       </div>
+        
     </section>
   );
 };

@@ -2,7 +2,7 @@ import React from 'react';
 
 const ProductCard = ({ product, addToCart }) => {
   return (
-    <div className="col-lg-3 col-md-4 col-sm-6 mb-4 ">
+    <div className="col-lg-3 col-md-4 col-sm-6 col-3 mb-4 ">
       <div className="card h-100 mt-5">
         <img src={product.thumbnail} className="card-img-top" alt={product.title}  style={{ objectFit: 'cover', height: '200px', padding:'10px' }}  />
         <div className="card-body">
